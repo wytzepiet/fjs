@@ -360,12 +360,12 @@ impl JsEngine {
         self.begin_init()?;
 
         let bridge = Arc::new(bridge);
+        let attachment = self.context.global_attachment.clone();
 
         let init_result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
-                if let Some(attachment) = &self.context.global_attachment
+            .with_js(async move |ctx| {
+                if let Some(attachment) = &attachment
                     && let Err(e) = attachment.attach(&ctx)
                 {
                     return Err(anyhow!("Failed to attach global context: {}", e));
@@ -406,11 +406,11 @@ impl JsEngine {
     pub async fn init_without_bridge(&self) -> anyhow::Result<()> {
         self.begin_init()?;
 
+        let attachment = self.context.global_attachment.clone();
         let init_result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
-                if let Some(attachment) = &self.context.global_attachment
+            .with_js(async move |ctx| {
+                if let Some(attachment) = &attachment
                     && let Err(e) = attachment.attach(&ctx)
                 {
                     return Err(anyhow!("Failed to attach global context: {}", e));
@@ -460,8 +460,7 @@ impl JsEngine {
 
             let _ = self
                 .context
-                .ctx
-                .async_with(async |ctx| {
+                .with_js(async |ctx| {
                     let globals = ctx.globals();
                     let _ = globals.remove("fjs");
                     Ok::<(), anyhow::Error>(())
@@ -521,8 +520,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 let res = ctx.eval_with_options(source_code, options.into());
                 result_from_promise(&ctx, res).await
             })
@@ -560,8 +558,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if is_dynamic_module_loaded(&ctx, &module.name) {
                     return JsResult::Err(JsError::module(
                         Some(module.name),
@@ -612,8 +609,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 let conflicts: Vec<_> = modules
                     .iter()
                     .filter(|module| is_dynamic_module_loaded(&ctx, &module.name))
@@ -703,8 +699,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if is_dynamic_module_loaded(&ctx, &module_name) {
                     return JsResult::Err(JsError::module(
                         Some(module_name),
@@ -767,8 +762,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 let conflicts: Vec<_> = resolved_modules
                     .iter()
                     .filter(|(name, _)| is_dynamic_module_loaded(&ctx, name))
@@ -849,8 +843,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if is_dynamic_module_loaded(&ctx, &module_name) {
                     return JsResult::Err(JsError::module(
                         Some(module_name),
@@ -911,8 +904,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if is_dynamic_module_loaded(&ctx, &module_name) {
                     return JsResult::Err(JsError::module(
                         Some(module_name),
@@ -1036,8 +1028,7 @@ impl JsEngine {
         let bytecode = script.bytes;
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 let res = eval_script_bytecode(&ctx, &script_name, &bytecode);
                 result_from_maybe_promise(&ctx, res).await
             })
@@ -1065,8 +1056,7 @@ impl JsEngine {
 
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if let Some(storage) = ctx.userdata::<DynamicModuleStorage>() {
                     let loaded: HashSet<_> =
                         get_loaded_dynamic_module_names(&ctx).into_iter().collect();
@@ -1104,8 +1094,7 @@ impl JsEngine {
         self.ensure_running()?;
 
         self.context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if let Some(storage) = ctx.userdata::<DynamicModuleStorage>() {
                     let mut modules: Vec<_> = storage.read().unwrap().keys().cloned().collect();
                     modules.sort();
@@ -1161,8 +1150,7 @@ impl JsEngine {
         self.ensure_running()?;
 
         self.context
-            .ctx
-            .async_with(async |ctx| {
+            .with_js(async move |ctx| {
                 if let Some(storage) = ctx.userdata::<DynamicModuleStorage>() {
                     Ok(storage.read().unwrap().contains_key(&module_name))
                 } else {
@@ -1246,8 +1234,7 @@ impl JsEngine {
         let params = params.unwrap_or_default();
         let result = self
             .context
-            .ctx
-            .async_with(async |ctx| call_module_method(&ctx, module, method, params).await)
+            .with_js(async move |ctx| call_module_method(&ctx, module, method, params).await)
             .await;
 
         result.into_result()
