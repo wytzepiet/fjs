@@ -1026,7 +1026,12 @@ impl JsAsyncRuntime {
             return;
         }
         // Drive on the dedicated JS runtime so driven jobs get the big stack too.
-        *slot = Some(crate::js_executor::spawn(self.rt.drive()));
+        let driver = self.rt.drive();
+        *slot = Some(if drive_logging_enabled() {
+            crate::js_executor::spawn(LoggedDrive::new(Box::pin(driver)))
+        } else {
+            crate::js_executor::spawn(driver)
+        });
     }
 
     /// Stops the background driver started by [`start_drive()`](Self::start_drive).
@@ -1059,6 +1064,88 @@ impl JsAsyncRuntime {
     pub async fn set_info(&self, info: String) -> anyhow::Result<()> {
         self.rt.set_info(info).await?;
         Ok(())
+    }
+}
+
+// ---------------------------------------------------------------------------
+// DIAGNOSTIC — background-driver idle-gap logging (temporary)
+//
+// Wraps the spawned drive() future and logs only when it wakes after being
+// PARKED for a while (>= IDLE_LOG_MS). One poll ≈ one wakeup, so a long idle
+// before a wake means the driver sat doing nothing while work may have been
+// waiting. Line up a `woke after Nms idle` with the app probe's
+// `GET RESOLVED +Nms`: if a fetch's response landed during the idle window but
+// wasn't delivered until that wake, the completion -> drive() wakeup is the
+// missing link. Burst wakes (< IDLE_LOG_MS apart) are dropped to cut noise.
+//
+// Gated `!cfg!(test)` — on when fjs is built as a dependency (the app), silent
+// under `cargo test`. Revert once the app-side cause is found.
+// ---------------------------------------------------------------------------
+
+/// Only log a wake if the driver was parked at least this long before it.
+const IDLE_LOG_MS: u128 = 50;
+
+fn drive_logging_enabled() -> bool {
+    // On in real builds (the app), off under `cargo test` so the suite stays
+    // silent. No env var needed, which matters on a device.
+    !cfg!(test)
+}
+
+fn drive_log_now_ms() -> u128 {
+    std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_millis())
+        .unwrap_or(0)
+}
+
+/// Wraps the background `drive()` future and logs each wake that follows a real
+/// idle gap, so on-device we can see whether the driver is woken promptly when a
+/// fetch/timer completes or only after long parks.
+struct LoggedDrive {
+    inner: std::pin::Pin<Box<dyn std::future::Future<Output = ()> + Send>>,
+    wakes: u64,
+    last_ms: u128,
+}
+
+impl LoggedDrive {
+    fn new(inner: std::pin::Pin<Box<dyn std::future::Future<Output = ()> + Send>>) -> Self {
+        let now = drive_log_now_ms();
+        eprintln!("[fjs-drive] started @ {now}ms");
+        Self {
+            inner,
+            wakes: 0,
+            last_ms: now,
+        }
+    }
+}
+
+impl std::future::Future for LoggedDrive {
+    type Output = ();
+
+    fn poll(
+        self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<()> {
+        let this = self.get_mut();
+        this.wakes += 1;
+        let now = drive_log_now_ms();
+        let idle = now.saturating_sub(this.last_ms);
+        this.last_ms = now;
+        if idle >= IDLE_LOG_MS {
+            eprintln!(
+                "[fjs-drive] woke after {idle}ms idle @ {now}ms (wake #{})",
+                this.wakes
+            );
+        }
+        let poll = this.inner.as_mut().poll(cx);
+        if poll.is_ready() {
+            eprintln!(
+                "[fjs-drive] ended after {} wakes @ {}ms (runtime dropped)",
+                this.wakes,
+                drive_log_now_ms()
+            );
+        }
+        poll
     }
 }
 
