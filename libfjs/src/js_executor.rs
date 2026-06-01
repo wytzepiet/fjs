@@ -29,22 +29,14 @@ const JS_WORKER_THREADS: usize = 4;
 fn executor() -> &'static Runtime {
     static EXECUTOR: OnceLock<Runtime> = OnceLock::new();
     EXECUTOR.get_or_init(|| {
-        let rt = tokio::runtime::Builder::new_multi_thread()
+        tokio::runtime::Builder::new_multi_thread()
             .worker_threads(JS_WORKER_THREADS)
             .thread_stack_size(JS_THREAD_STACK_SIZE)
             .thread_name("fjs-js")
             .on_thread_start(raise_thread_qos)
             .enable_all()
             .build()
-            .expect("failed to build fjs JS runtime");
-        // DIAGNOSTIC (temporary, !cfg!(test)): a bare-tokio heartbeat that
-        // measures whether this runtime's *time driver* fires `sleep` promptly
-        // on-device. If a 250 ms sleep takes seconds, the time driver isn't
-        // waking the worker at the deadline (only on I/O) — the root of the
-        // detached-async stall. Logs the first ticks and any later anomaly.
-        #[cfg(not(test))]
-        rt.spawn(heartbeat_diagnostic());
-        rt
+            .expect("failed to build fjs JS runtime")
     })
 }
 
@@ -78,30 +70,6 @@ fn raise_thread_qos() {
 
 #[cfg(not(any(target_os = "macos", target_os = "ios")))]
 fn raise_thread_qos() {}
-
-/// Temporary on-device probe of the time driver (see `executor`). Sleeps in a
-/// 250 ms loop and reports how late each wake actually was. A healthy runtime
-/// reports ~0 ms; a throttled time driver reports seconds (wakes only land when
-/// unrelated socket I/O happens to fire). A timer-based heartbeat cannot mask
-/// the bug: if the driver ignores its park timeout, the heartbeat's own sleeps
-/// stall too. Gated `!cfg!(test)`.
-#[cfg(not(test))]
-async fn heartbeat_diagnostic() {
-    use std::time::{Duration, Instant};
-    const PERIOD: Duration = Duration::from_millis(250);
-    let mut tick: u64 = 0;
-    loop {
-        let before = Instant::now();
-        tokio::time::sleep(PERIOD).await;
-        let late = before.elapsed().saturating_sub(PERIOD).as_millis();
-        tick += 1;
-        // Always log the first few ticks (to read the cold time-driver state),
-        // then only when a 250 ms sleep ran >150 ms late.
-        if tick <= 8 || late > 150 {
-            eprintln!("[fjs-heartbeat] tick #{tick}: sleep(250) was {late}ms late");
-        }
-    }
-}
 
 /// Spawns a JS task on the dedicated runtime.
 pub(crate) fn spawn<F>(future: F) -> JoinHandle<F::Output>
