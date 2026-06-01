@@ -66,3 +66,12 @@ opt-level = "z"  # Optimize for size.
 lto = true  # Enable link time optimization
 codegen-units = 1  # Reduce parallel code generation units
 #panic = "abort"
+
+# Optimize dependencies even in dev builds. `flutter run` (debug) compiles via
+# the cargo dev profile, so QuickJS would otherwise be unoptimized: its big
+# recursive interpreter (JS_CallInternal) then spills every local to the stack,
+# ~8.7 KB per JS frame vs ~1 KB optimized. Matching release's opt-level keeps
+# the dev stack ceiling close to release (~9x deeper). Our own crate stays at
+# opt-level 0 for fast iteration.
+[profile.dev.package."*"]
+opt-level = "z"
