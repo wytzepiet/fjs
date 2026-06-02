@@ -849,6 +849,61 @@ async fn test_background_driver_pumps_detached_timer() {
     engine.close().await.unwrap();
 }
 
+/// A driver-pumped detached timer must still fire when an ordinary `eval` runs
+/// alongside the running driver.
+///
+/// rquickjs's scheduler has a single-slot waker. Every `eval` drives the
+/// scheduler and registers its own short-lived waker there, evicting the
+/// driver's. A later timer/fetch completion then wakes a dead waker and the
+/// parked driver never re-polls. Since `eval` is the core API (the bridge runs JS
+/// constantly), this makes `start_drive` unreliable in any real integration — it
+/// is why on-device detached async stalled until an unrelated event. `with_js`
+/// re-arms the driver after every call, which is what this guards.
+#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+async fn test_driver_survives_concurrent_eval() {
+    use crate::api::engine::JsEngine;
+    use crate::api::source::{JsBuiltinOptions, JsCode};
+    use std::time::Duration;
+
+    let engine = JsEngine::create(Some(JsBuiltinOptions::essential()), None, None)
+        .await
+        .unwrap();
+    engine.init_without_bridge().await.unwrap();
+    engine.start_drive().await.unwrap();
+
+    engine
+        .eval(
+            JsCode::Code(
+                "setTimeout(() => { globalThis.__fired = true; }, 200); 'scheduled'".to_string(),
+            ),
+            None,
+        )
+        .await
+        .unwrap();
+
+    // Let the driver poll the timer and register its waker, then run an unrelated
+    // eval — it drives the scheduler and evicts the driver's waker.
+    tokio::time::sleep(Duration::from_millis(50)).await;
+    engine
+        .eval(JsCode::Code("await Promise.resolve(1)".to_string()), None)
+        .await
+        .unwrap();
+
+    // No further activity. The timer fires at 200ms; if the driver's waker was
+    // evicted and not re-armed, the completion wakes a dead waker and nothing
+    // re-polls it.
+    tokio::time::sleep(Duration::from_millis(500)).await;
+
+    // Capture before closing, then shut down cleanly regardless of the result.
+    let still_pending = engine.is_job_pending().await.unwrap();
+    engine.close().await.unwrap();
+    assert!(
+        !still_pending,
+        "detached timer stalled: a concurrent eval evicted the driver's scheduler waker \
+         and it was not re-armed",
+    );
+}
+
 /// Same idea as the timer test, but for `fetch` — the path that actually fails
 /// in the app. A fetch's network I/O is driven by a connection task hyper
 /// `tokio::spawn`s separately from the scheduler, so it exercises more of the

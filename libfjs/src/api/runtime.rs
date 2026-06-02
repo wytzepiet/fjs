@@ -32,13 +32,6 @@ pub(crate) const MAX_SAFE_STACK_SIZE: usize = crate::js_executor::JS_THREAD_STAC
 /// not control its stack). Kept conservative — assumes a 2 MB thread.
 const SYNC_MAX_STACK_SIZE: usize = 2 * 1024 * 1024 / 4 * 3;
 
-/// Poll interval for the background pump started by [`JsAsyncRuntime::start_drive`].
-/// Short enough that detached async (timers, `fetch` responses) resolves within
-/// tens of ms under load; the OS coalesces it when the app is idle. See
-/// `start_drive` for why a poll is used instead of rquickjs's event-driven
-/// `drive()`.
-const DRIVE_PUMP_INTERVAL_MS: u64 = 16;
-
 /// Clamps a requested stack budget to `ceiling`. `0` means "no limit" to
 /// QuickJS, which on a fixed thread stack just means "crash", so it maps to the
 /// ceiling too.
@@ -1032,41 +1025,13 @@ impl JsAsyncRuntime {
         if slot.as_ref().is_some_and(|handle| !handle.is_finished()) {
             return;
         }
-        // Background pump. This plays the role of rquickjs's `drive()`, but
-        // `drive()` proved unreliable in this integration on two fronts:
-        //   1. Its parked task is re-woken through the scheduler's single-slot
-        //      AtomicWaker, which every `eval`/`execute_pending_job` (the bridge
-        //      runs `execute_pending_job` after each call, and a live app has
-        //      constant WebSocket-driven bridge traffic) overwrites with its own
-        //      short-lived waker — so a later timer/`fetch` completion wakes a
-        //      dead waker and the driver stays parked.
-        //   2. iOS throttles timer-based wakeups for idle threads to the point a
-        //      correct event-driven wake can be delayed for seconds.
-        // A short fixed-interval poll on the dedicated JS runtime (whose threads
-        // are QoS-raised, see `js_executor`) sidesteps both: each pass drains all
-        // currently-runnable jobs + spawned futures, then sleeps. The OS coalesces
-        // the sleep when the app is idle (battery-friendly) yet keeps it prompt
-        // (~tens of ms) under load. A weak handle lets the task exit once the
-        // runtime is dropped.
-        let weak = self.rt.weak();
-        *slot = Some(crate::js_executor::spawn(async move {
-            loop {
-                let Some(rt) = weak.try_ref() else { break };
-                // Drain everything runnable right now: QuickJS jobs and any
-                // spawned futures (timers, fetch) whose I/O has completed.
-                loop {
-                    match rt.execute_pending_job().await {
-                        Ok(true) => continue,
-                        // Ok(false): nothing progressed this pass. Err: a job
-                        // threw — the exception is left on its context (same as
-                        // `drive()` does) and remaining work is picked up next pass.
-                        Ok(false) | Err(_) => break,
-                    }
-                }
-                drop(rt);
-                tokio::time::sleep(std::time::Duration::from_millis(DRIVE_PUMP_INTERVAL_MS)).await;
-            }
-        }));
+        // Event-driven driver on the dedicated JS runtime (so driven jobs get the
+        // big stack and run on `fjs-js`). `drive()` parks until a spawned future
+        // (timer/fetch) or job becomes runnable. Its one weak spot is the
+        // scheduler's single-slot waker, which `eval`/`execute_pending_job` evict;
+        // `with_js` re-arms it after every call (see the no-op spawn there), so a
+        // later completion can't wake a dead waker.
+        *slot = Some(crate::js_executor::spawn(self.rt.drive()));
     }
 
     /// Stops the background driver started by [`start_drive()`](Self::start_drive).
@@ -1136,7 +1101,23 @@ impl JsAsyncContext {
         R: Send + 'static,
     {
         let ctx = self.ctx.clone();
-        crate::js_executor::run(async move { ctx.async_with(f).await }).await
+        crate::js_executor::run(async move {
+            ctx.async_with(async |ctx| {
+                let result = f(ctx.clone()).await;
+                // Re-arm the background driver. This call just drove the scheduler
+                // and overwrote `drive()`'s single-slot waker with its own
+                // (now-finishing) one. Spawning a no-op rings the scheduler's
+                // separate "new task" channel — which `drive()` listens on and
+                // `eval`/`execute_pending_job` do NOT clobber — waking `drive()` so
+                // it re-polls and re-registers its waker. Without this, a later
+                // detached timer/`fetch` completion would wake a dead waker and the
+                // driver would stay parked until some unrelated event.
+                ctx.spawn(async {});
+                result
+            })
+            .await
+        })
+        .await
     }
 
     /// Creates a new async context from a runtime.
