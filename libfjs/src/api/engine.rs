@@ -94,6 +94,28 @@ pub struct JsEngine {
     state: AtomicU8,
 }
 
+impl Drop for JsEngine {
+    fn drop(&mut self) {
+        // Closed already → close() emptied the heap, so let the fields free it.
+        if self.state.load(Ordering::Acquire) == STATE_CLOSED {
+            return;
+        }
+
+        // Dropped without close() — e.g. a hot restart discarding the isolate.
+        // The heap is still live, so freeing the runtime now aborts in
+        // JS_FreeRuntime (gc_obj_list not empty). Stop the driver and leak the
+        // handles instead: one runtime per hot restart, reclaimed on full
+        // restart. Release always closes first, so it never gets here.
+        if let Ok(mut slot) = self.runtime.driver.lock() {
+            if let Some(handle) = slot.take() {
+                handle.abort();
+            }
+        }
+        std::mem::forget(self.runtime.clone());
+        std::mem::forget(self.context.clone());
+    }
+}
+
 impl JsEngine {
     /// Creates a new JavaScript engine with custom runtime configuration.
     ///
