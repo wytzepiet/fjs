@@ -5,6 +5,11 @@ Goal: stay minimally diverged, upstream everything.
 
 Remotes: `origin` = wytzepiet/fjs, `upstream` = fluttercandies/fjs.
 
+> **solid-fuse vendors this repo's `solid-fuse` branch in-tree via git subtree**
+> (at `packages/solid-fuse/dart/lib/src/fjs` there). This repo stays the source
+> of truth — edit fjs here, not in the vendored copy. Changes reach the framework
+> when someone runs `make sync-fjs` in solid-fuse, not via a pub bump.
+
 ## Branches
 
 - **`main`** — mirrors `upstream/main` exactly. Never commit here.
