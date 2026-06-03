@@ -281,6 +281,42 @@ async fn test_engine_drop_with_bridge_without_close_does_not_abort() {
     assert!(matches!(result.unwrap(), JsValue::Integer(5)));
 }
 
+/// Hot restart: dropping a running engine (driver active, live heap) without
+/// close() must not abort. A regression is a SIGABRT, so the second engine only
+/// runs if the first drop was clean. (Reliably reproduces on-device; here it
+/// just exercises the path.)
+#[tokio::test]
+async fn test_engine_drop_running_with_live_heap_does_not_abort() {
+    {
+        let engine = JsEngine::create(None, None, None).await.unwrap();
+        engine
+            .init(|value| Box::pin(async move { JsResult::Ok(value) }))
+            .await
+            .unwrap();
+        // Run the background driver, as the app does.
+        engine.runtime_for_test().start_drive().await;
+        // Leave a live heap: retained globals + a still-pending timer.
+        let _ = engine
+            .eval(
+                JsCode::Code(
+                    "globalThis.__keep = { a: [1, 2, 3], f: () => 42 };\
+                     setTimeout(() => {}, 100000); 1"
+                        .to_string(),
+                ),
+                None,
+            )
+            .await;
+        // Drop WITHOUT close(), exactly as a Flutter hot restart does.
+        drop(engine);
+    }
+
+    // Reached only if the drop above did not abort the process.
+    let engine = JsEngine::create(None, None, None).await.unwrap();
+    engine.init_without_bridge().await.unwrap();
+    let result = engine.eval(JsCode::Code("2 + 3".to_string()), None).await;
+    assert!(matches!(result.unwrap(), JsValue::Integer(5)));
+}
+
 #[tokio::test]
 async fn test_engine_double_init_fails() {
     let engine = JsEngine::create(None, None, None).await.unwrap();
