@@ -155,6 +155,7 @@ class RustBuilder {
     final manifestPath = path.join(environment.manifestDir, 'Cargo.toml');
     final buildEnvironment = await _buildEnvironment();
     buildEnvironment['RUSTC'] = _toolchainRustc();
+    final targetDir = _cargoTargetDir();
     runCommand(
       'rustup',
       [
@@ -171,15 +172,26 @@ class RustBuilder {
         '--target',
         target.rust,
         '--target-dir',
-        environment.targetTempDir,
+        targetDir,
       ],
       environment: buildEnvironment,
     );
     return path.join(
-      environment.targetTempDir,
+      targetDir,
       target.rust,
       environment.configuration.rustName,
     );
+  }
+
+  /// Cargo's target directory. Honours `CARGO_TARGET_DIR` when it is set, so
+  /// every app and build directory that builds this crate can share one cache
+  /// (a fresh app, a second example app or `flutter clean` then reuses the
+  /// compiled dependencies instead of rebuilding them). Otherwise the build
+  /// stays private to this build directory, as before.
+  String _cargoTargetDir() {
+    final shared = Platform.environment['CARGO_TARGET_DIR'];
+    if (shared != null && shared.isNotEmpty) return path.absolute(shared);
+    return environment.targetTempDir;
   }
 
   String _toolchainRustc() {
