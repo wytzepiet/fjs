@@ -79,6 +79,14 @@ lto = true  # Enable link time optimization
 codegen-units = 1  # Reduce parallel code generation units
 #panic = "abort"
 
+# QuickJS is an interpreter, so its speed follows how the C sources are
+# compiled. Build only the engine's C code for speed and keep the rest of the
+# crate size-optimised: about 12-19% less JS time on render benchmarks for about
+# 0.4 MB per ABI (the whole crate at opt-level 3 costs about 3.8 MB and gains
+# nothing more).
+[profile.release.package.rquickjs-sys]
+opt-level = 3
+
 # Optimize dependencies even in dev builds. `flutter run` (debug) compiles via
 # the cargo dev profile, so QuickJS would otherwise be unoptimized: its big
 # recursive interpreter (JS_CallInternal) then spills every local to the stack,
