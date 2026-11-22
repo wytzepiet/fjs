@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'source.dart';
@@ -9,6 +9,7 @@ part of 'source.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $JsBuiltinOptionsCopyWith<JsBuiltinOptions> get copyWith => _$JsBuiltinOptionsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsBuiltinOptions&&(identical(other.abort, abort) || other.abort == abort)&&(identical(other.assert_, assert_) || other.assert_ == assert_)&&(identical(other.asyncHooks, asyncHooks) || other.asyncHooks == asyncHooks)&&(identical(other.buffer, buffer) || other.buffer == buffer)&&(identical(other.childProcess, childProcess) || other.childProcess == childProcess)&&(identical(other.console, console) || other.console == console)&&(identical(other.crypto, crypto) || other.crypto == crypto)&&(identical(other.dgram, dgram) || other.dgram == dgram)&&(identical(other.dns, dns) || other.dns == dns)&&(identical(other.events, events) || other.events == events)&&(identical(other.exceptions, exceptions) || other.exceptions == exceptions)&&(identical(other.fetch, fetch) || other.fetch == fetch)&&(identical(other.fs, fs) || other.fs == fs)&&(identical(other.https, https) || other.https == https)&&(identical(other.intl, intl) || other.intl == intl)&&(identical(other.navigator, navigator) || other.navigator == navigator)&&(identical(other.net, net) || other.net == net)&&(identical(other.os, os) || other.os == os)&&(identical(other.path, path) || other.path == path)&&(identical(other.perfHooks, perfHooks) || other.perfHooks == perfHooks)&&(identical(other.process, process) || other.process == process)&&(identical(other.streamWeb, streamWeb) || other.streamWeb == streamWeb)&&(identical(other.stringDecoder, stringDecoder) || other.stringDecoder == stringDecoder)&&(identical(other.temporal, temporal) || other.temporal == temporal)&&(identical(other.timers, timers) || other.timers == timers)&&(identical(other.tty, tty) || other.tty == tty)&&(identical(other.url, url) || other.url == url)&&(identical(other.util, util) || other.util == util)&&(identical(other.zlib, zlib) || other.zlib == zlib)&&(identical(other.json, json) || other.json == json));
+  final _this = this as JsBuiltinOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsBuiltinOptions&&(identical(other.abort, _this.abort) || other.abort == _this.abort)&&(identical(other.assert_, _this.assert_) || other.assert_ == _this.assert_)&&(identical(other.asyncHooks, _this.asyncHooks) || other.asyncHooks == _this.asyncHooks)&&(identical(other.buffer, _this.buffer) || other.buffer == _this.buffer)&&(identical(other.childProcess, _this.childProcess) || other.childProcess == _this.childProcess)&&(identical(other.console, _this.console) || other.console == _this.console)&&(identical(other.crypto, _this.crypto) || other.crypto == _this.crypto)&&(identical(other.dgram, _this.dgram) || other.dgram == _this.dgram)&&(identical(other.dns, _this.dns) || other.dns == _this.dns)&&(identical(other.events, _this.events) || other.events == _this.events)&&(identical(other.exceptions, _this.exceptions) || other.exceptions == _this.exceptions)&&(identical(other.fetch, _this.fetch) || other.fetch == _this.fetch)&&(identical(other.fs, _this.fs) || other.fs == _this.fs)&&(identical(other.https, _this.https) || other.https == _this.https)&&(identical(other.intl, _this.intl) || other.intl == _this.intl)&&(identical(other.navigator, _this.navigator) || other.navigator == _this.navigator)&&(identical(other.net, _this.net) || other.net == _this.net)&&(identical(other.os, _this.os) || other.os == _this.os)&&(identical(other.path, _this.path) || other.path == _this.path)&&(identical(other.perfHooks, _this.perfHooks) || other.perfHooks == _this.perfHooks)&&(identical(other.process, _this.process) || other.process == _this.process)&&(identical(other.streamWeb, _this.streamWeb) || other.streamWeb == _this.streamWeb)&&(identical(other.stringDecoder, _this.stringDecoder) || other.stringDecoder == _this.stringDecoder)&&(identical(other.temporal, _this.temporal) || other.temporal == _this.temporal)&&(identical(other.timers, _this.timers) || other.timers == _this.timers)&&(identical(other.tty, _this.tty) || other.tty == _this.tty)&&(identical(other.url, _this.url) || other.url == _this.url)&&(identical(other.util, _this.util) || other.util == _this.util)&&(identical(other.zlib, _this.zlib) || other.zlib == _this.zlib)&&(identical(other.json, _this.json) || other.json == _this.json));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,abort,assert_,asyncHooks,buffer,childProcess,console,crypto,dgram,dns,events,exceptions,fetch,fs,https,intl,navigator,net,os,path,perfHooks,process,streamWeb,stringDecoder,temporal,timers,tty,url,util,zlib,json]);
+int get hashCode {
+  final _this = this as JsBuiltinOptions;
+  return Object.hashAll([runtimeType,_this.abort,_this.assert_,_this.asyncHooks,_this.buffer,_this.childProcess,_this.console,_this.crypto,_this.dgram,_this.dns,_this.events,_this.exceptions,_this.fetch,_this.fs,_this.https,_this.intl,_this.navigator,_this.net,_this.os,_this.path,_this.perfHooks,_this.process,_this.streamWeb,_this.stringDecoder,_this.temporal,_this.timers,_this.tty,_this.url,_this.util,_this.zlib,_this.json]);
+}
 
 @override
 String toString() {
-  return 'JsBuiltinOptions(abort: $abort, assert_: $assert_, asyncHooks: $asyncHooks, buffer: $buffer, childProcess: $childProcess, console: $console, crypto: $crypto, dgram: $dgram, dns: $dns, events: $events, exceptions: $exceptions, fetch: $fetch, fs: $fs, https: $https, intl: $intl, navigator: $navigator, net: $net, os: $os, path: $path, perfHooks: $perfHooks, process: $process, streamWeb: $streamWeb, stringDecoder: $stringDecoder, temporal: $temporal, timers: $timers, tty: $tty, url: $url, util: $util, zlib: $zlib, json: $json)';
+  final _this = this as JsBuiltinOptions;
+  return 'JsBuiltinOptions(abort: ${_this.abort}, assert_: ${_this.assert_}, asyncHooks: ${_this.asyncHooks}, buffer: ${_this.buffer}, childProcess: ${_this.childProcess}, console: ${_this.console}, crypto: ${_this.crypto}, dgram: ${_this.dgram}, dns: ${_this.dns}, events: ${_this.events}, exceptions: ${_this.exceptions}, fetch: ${_this.fetch}, fs: ${_this.fs}, https: ${_this.https}, intl: ${_this.intl}, navigator: ${_this.navigator}, net: ${_this.net}, os: ${_this.os}, path: ${_this.path}, perfHooks: ${_this.perfHooks}, process: ${_this.process}, streamWeb: ${_this.streamWeb}, stringDecoder: ${_this.stringDecoder}, temporal: ${_this.temporal}, timers: ${_this.timers}, tty: ${_this.tty}, url: ${_this.url}, util: ${_this.util}, zlib: ${_this.zlib}, json: ${_this.json})';
 }
 
 
@@ -63,7 +69,7 @@ class _$JsBuiltinOptionsCopyWithImpl<$Res>
 /// Create a copy of JsBuiltinOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? abort = freezed,Object? assert_ = freezed,Object? asyncHooks = freezed,Object? buffer = freezed,Object? childProcess = freezed,Object? console = freezed,Object? crypto = freezed,Object? dgram = freezed,Object? dns = freezed,Object? events = freezed,Object? exceptions = freezed,Object? fetch = freezed,Object? fs = freezed,Object? https = freezed,Object? intl = freezed,Object? navigator = freezed,Object? net = freezed,Object? os = freezed,Object? path = freezed,Object? perfHooks = freezed,Object? process = freezed,Object? streamWeb = freezed,Object? stringDecoder = freezed,Object? temporal = freezed,Object? timers = freezed,Object? tty = freezed,Object? url = freezed,Object? util = freezed,Object? zlib = freezed,Object? json = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(JsBuiltinOptions(
 abort: freezed == abort ? _self.abort : abort // ignore: cast_nullable_to_non_nullable
 as bool?,assert_: freezed == assert_ ? _self.assert_ : assert_ // ignore: cast_nullable_to_non_nullable
 as bool?,asyncHooks: freezed == asyncHooks ? _self.asyncHooks : asyncHooks // ignore: cast_nullable_to_non_nullable
@@ -273,16 +279,18 @@ _$JsBuiltinOptionsCopyWith<_JsBuiltinOptions> get copyWith => __$JsBuiltinOption
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsBuiltinOptions&&(identical(other.abort, abort) || other.abort == abort)&&(identical(other.assert_, assert_) || other.assert_ == assert_)&&(identical(other.asyncHooks, asyncHooks) || other.asyncHooks == asyncHooks)&&(identical(other.buffer, buffer) || other.buffer == buffer)&&(identical(other.childProcess, childProcess) || other.childProcess == childProcess)&&(identical(other.console, console) || other.console == console)&&(identical(other.crypto, crypto) || other.crypto == crypto)&&(identical(other.dgram, dgram) || other.dgram == dgram)&&(identical(other.dns, dns) || other.dns == dns)&&(identical(other.events, events) || other.events == events)&&(identical(other.exceptions, exceptions) || other.exceptions == exceptions)&&(identical(other.fetch, fetch) || other.fetch == fetch)&&(identical(other.fs, fs) || other.fs == fs)&&(identical(other.https, https) || other.https == https)&&(identical(other.intl, intl) || other.intl == intl)&&(identical(other.navigator, navigator) || other.navigator == navigator)&&(identical(other.net, net) || other.net == net)&&(identical(other.os, os) || other.os == os)&&(identical(other.path, path) || other.path == path)&&(identical(other.perfHooks, perfHooks) || other.perfHooks == perfHooks)&&(identical(other.process, process) || other.process == process)&&(identical(other.streamWeb, streamWeb) || other.streamWeb == streamWeb)&&(identical(other.stringDecoder, stringDecoder) || other.stringDecoder == stringDecoder)&&(identical(other.temporal, temporal) || other.temporal == temporal)&&(identical(other.timers, timers) || other.timers == timers)&&(identical(other.tty, tty) || other.tty == tty)&&(identical(other.url, url) || other.url == url)&&(identical(other.util, util) || other.util == util)&&(identical(other.zlib, zlib) || other.zlib == zlib)&&(identical(other.json, json) || other.json == json));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsBuiltinOptions&&(identical(other.abort, abort) || other.abort == abort)&&(identical(other.assert_, assert_) || other.assert_ == assert_)&&(identical(other.asyncHooks, asyncHooks) || other.asyncHooks == asyncHooks)&&(identical(other.buffer, buffer) || other.buffer == buffer)&&(identical(other.childProcess, childProcess) || other.childProcess == childProcess)&&(identical(other.console, console) || other.console == console)&&(identical(other.crypto, crypto) || other.crypto == crypto)&&(identical(other.dgram, dgram) || other.dgram == dgram)&&(identical(other.dns, dns) || other.dns == dns)&&(identical(other.events, events) || other.events == events)&&(identical(other.exceptions, exceptions) || other.exceptions == exceptions)&&(identical(other.fetch, fetch) || other.fetch == fetch)&&(identical(other.fs, fs) || other.fs == fs)&&(identical(other.https, https) || other.https == https)&&(identical(other.intl, intl) || other.intl == intl)&&(identical(other.navigator, navigator) || other.navigator == navigator)&&(identical(other.net, net) || other.net == net)&&(identical(other.os, os) || other.os == os)&&(identical(other.path, path) || other.path == path)&&(identical(other.perfHooks, perfHooks) || other.perfHooks == perfHooks)&&(identical(other.process, process) || other.process == process)&&(identical(other.streamWeb, streamWeb) || other.streamWeb == streamWeb)&&(identical(other.stringDecoder, stringDecoder) || other.stringDecoder == stringDecoder)&&(identical(other.temporal, temporal) || other.temporal == temporal)&&(identical(other.timers, timers) || other.timers == timers)&&(identical(other.tty, tty) || other.tty == tty)&&(identical(other.url, url) || other.url == url)&&(identical(other.util, util) || other.util == util)&&(identical(other.zlib, zlib) || other.zlib == zlib)&&(identical(other.json, json) || other.json == json));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,abort,assert_,asyncHooks,buffer,childProcess,console,crypto,dgram,dns,events,exceptions,fetch,fs,https,intl,navigator,net,os,path,perfHooks,process,streamWeb,stringDecoder,temporal,timers,tty,url,util,zlib,json]);
+int get hashCode {
+    return Object.hashAll([runtimeType,abort,assert_,asyncHooks,buffer,childProcess,console,crypto,dgram,dns,events,exceptions,fetch,fs,https,intl,navigator,net,os,path,perfHooks,process,streamWeb,stringDecoder,temporal,timers,tty,url,util,zlib,json]);
+}
 
 @override
 String toString() {
-  return 'JsBuiltinOptions(abort: $abort, assert_: $assert_, asyncHooks: $asyncHooks, buffer: $buffer, childProcess: $childProcess, console: $console, crypto: $crypto, dgram: $dgram, dns: $dns, events: $events, exceptions: $exceptions, fetch: $fetch, fs: $fs, https: $https, intl: $intl, navigator: $navigator, net: $net, os: $os, path: $path, perfHooks: $perfHooks, process: $process, streamWeb: $streamWeb, stringDecoder: $stringDecoder, temporal: $temporal, timers: $timers, tty: $tty, url: $url, util: $util, zlib: $zlib, json: $json)';
+    return 'JsBuiltinOptions(abort: $abort, assert_: $assert_, asyncHooks: $asyncHooks, buffer: $buffer, childProcess: $childProcess, console: $console, crypto: $crypto, dgram: $dgram, dns: $dns, events: $events, exceptions: $exceptions, fetch: $fetch, fs: $fs, https: $https, intl: $intl, navigator: $navigator, net: $net, os: $os, path: $path, perfHooks: $perfHooks, process: $process, streamWeb: $streamWeb, stringDecoder: $stringDecoder, temporal: $temporal, timers: $timers, tty: $tty, url: $url, util: $util, zlib: $zlib, json: $json)';
 }
 
 
@@ -358,16 +366,21 @@ mixin _$JsCode {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode&&const DeepCollectionEquality().equals(other.field0, field0));
+  final _this = this as JsCode;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode&&const DeepCollectionEquality().equals(other.field0, _this.field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+int get hashCode {
+  final _this = this as JsCode;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.field0));
+}
 
 @override
 String toString() {
-  return 'JsCode(field0: $field0)';
+  final _this = this as JsCode;
+  return 'JsCode(field0: ${_this.field0})';
 }
 
 
@@ -534,16 +547,18 @@ $JsCode_CodeCopyWith<JsCode_Code> get copyWith => _$JsCode_CodeCopyWithImpl<JsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Code&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Code&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsCode.code(field0: $field0)';
+    return 'JsCode.code(field0: $field0)';
 }
 
 
@@ -600,16 +615,18 @@ $JsCode_PathCopyWith<JsCode_Path> get copyWith => _$JsCode_PathCopyWithImpl<JsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Path&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Path&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsCode.path(field0: $field0)';
+    return 'JsCode.path(field0: $field0)';
 }
 
 
@@ -666,16 +683,18 @@ $JsCode_BytesCopyWith<JsCode_Bytes> get copyWith => _$JsCode_BytesCopyWithImpl<J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Bytes&&const DeepCollectionEquality().equals(other.field0, field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsCode_Bytes&&const DeepCollectionEquality().equals(other.field0, field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+}
 
 @override
 String toString() {
-  return 'JsCode.bytes(field0: $field0)';
+    return 'JsCode.bytes(field0: $field0)';
 }
 
 
@@ -727,16 +746,21 @@ $JsEvalOptionsCopyWith<JsEvalOptions> get copyWith => _$JsEvalOptionsCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsEvalOptions&&(identical(other.global, global) || other.global == global)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
+  final _this = this as JsEvalOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsEvalOptions&&(identical(other.global, _this.global) || other.global == _this.global)&&(identical(other.strict, _this.strict) || other.strict == _this.strict)&&(identical(other.backtraceBarrier, _this.backtraceBarrier) || other.backtraceBarrier == _this.backtraceBarrier)&&(identical(other.promise, _this.promise) || other.promise == _this.promise));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,global,strict,backtraceBarrier,promise);
+int get hashCode {
+  final _this = this as JsEvalOptions;
+  return Object.hash(runtimeType,_this.global,_this.strict,_this.backtraceBarrier,_this.promise);
+}
 
 @override
 String toString() {
-  return 'JsEvalOptions(global: $global, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
+  final _this = this as JsEvalOptions;
+  return 'JsEvalOptions(global: ${_this.global}, strict: ${_this.strict}, backtraceBarrier: ${_this.backtraceBarrier}, promise: ${_this.promise})';
 }
 
 
@@ -765,7 +789,7 @@ class _$JsEvalOptionsCopyWithImpl<$Res>
 /// Create a copy of JsEvalOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? global = freezed,Object? strict = freezed,Object? backtraceBarrier = freezed,Object? promise = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(JsEvalOptions(
 global: freezed == global ? _self.global : global // ignore: cast_nullable_to_non_nullable
 as bool?,strict: freezed == strict ? _self.strict : strict // ignore: cast_nullable_to_non_nullable
 as bool?,backtraceBarrier: freezed == backtraceBarrier ? _self.backtraceBarrier : backtraceBarrier // ignore: cast_nullable_to_non_nullable
@@ -923,16 +947,18 @@ _$JsEvalOptionsCopyWith<_JsEvalOptions> get copyWith => __$JsEvalOptionsCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsEvalOptions&&(identical(other.global, global) || other.global == global)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsEvalOptions&&(identical(other.global, global) || other.global == global)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,global,strict,backtraceBarrier,promise);
+int get hashCode {
+    return Object.hash(runtimeType,global,strict,backtraceBarrier,promise);
+}
 
 @override
 String toString() {
-  return 'JsEvalOptions.raw(global: $global, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
+    return 'JsEvalOptions.raw(global: $global, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
 }
 
 
@@ -987,16 +1013,21 @@ $JsModuleCopyWith<JsModule> get copyWith => _$JsModuleCopyWithImpl<JsModule>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModule&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source));
+  final _this = this as JsModule;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModule&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.source, _this.source) || other.source == _this.source));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,source);
+int get hashCode {
+  final _this = this as JsModule;
+  return Object.hash(runtimeType,_this.name,_this.source);
+}
 
 @override
 String toString() {
-  return 'JsModule(name: $name, source: $source)';
+  final _this = this as JsModule;
+  return 'JsModule(name: ${_this.name}, source: ${_this.source})';
 }
 
 
@@ -1025,7 +1056,7 @@ class _$JsModuleCopyWithImpl<$Res>
 /// Create a copy of JsModule
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? source = null,}) {
-  return _then(_self.copyWith(
+  return _then(JsModule(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as JsCode,
@@ -1188,16 +1219,18 @@ _$JsModuleCopyWith<_JsModule> get copyWith => __$JsModuleCopyWithImpl<_JsModule>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModule&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModule&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,source);
+int get hashCode {
+    return Object.hash(runtimeType,name,source);
+}
 
 @override
 String toString() {
-  return 'JsModule.raw(name: $name, source: $source)';
+    return 'JsModule.raw(name: $name, source: $source)';
 }
 
 
@@ -1259,16 +1292,21 @@ $JsModuleBytecodeCopyWith<JsModuleBytecode> get copyWith => _$JsModuleBytecodeCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
+  final _this = this as JsModuleBytecode;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecode&&(identical(other.name, _this.name) || other.name == _this.name)&&const DeepCollectionEquality().equals(other.bytes, _this.bytes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+int get hashCode {
+  final _this = this as JsModuleBytecode;
+  return Object.hash(runtimeType,_this.name,const DeepCollectionEquality().hash(_this.bytes));
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecode(name: $name, bytes: $bytes)';
+  final _this = this as JsModuleBytecode;
+  return 'JsModuleBytecode(name: ${_this.name}, bytes: ${_this.bytes})';
 }
 
 
@@ -1297,10 +1335,10 @@ class _$JsModuleBytecodeCopyWithImpl<$Res>
 /// Create a copy of JsModuleBytecode
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? bytes = null,}) {
-  return _then(_self.copyWith(
+  return _then(JsModuleBytecode(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,bytes: null == bytes ? _self.bytes : bytes // ignore: cast_nullable_to_non_nullable
-as Uint8List,
+as String,bytes: null == bytes ? _self.bytes! : bytes // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 
@@ -1451,16 +1489,18 @@ _$JsModuleBytecodeCopyWith<_JsModuleBytecode> get copyWith => __$JsModuleBytecod
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+int get hashCode {
+    return Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecode.raw(name: $name, bytes: $bytes)';
+    return 'JsModuleBytecode.raw(name: $name, bytes: $bytes)';
 }
 
 
@@ -1513,16 +1553,21 @@ $JsModuleBytecodeBundleCopyWith<JsModuleBytecodeBundle> get copyWith => _$JsModu
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecodeBundle&&(identical(other.entry, entry) || other.entry == entry)&&const DeepCollectionEquality().equals(other.modules, modules));
+  final _this = this as JsModuleBytecodeBundle;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecodeBundle&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&const DeepCollectionEquality().equals(other.modules, _this.modules));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,entry,const DeepCollectionEquality().hash(modules));
+int get hashCode {
+  final _this = this as JsModuleBytecodeBundle;
+  return Object.hash(runtimeType,_this.entry,const DeepCollectionEquality().hash(_this.modules));
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecodeBundle(entry: $entry, modules: $modules)';
+  final _this = this as JsModuleBytecodeBundle;
+  return 'JsModuleBytecodeBundle(entry: ${_this.entry}, modules: ${_this.modules})';
 }
 
 
@@ -1551,7 +1596,7 @@ class _$JsModuleBytecodeBundleCopyWithImpl<$Res>
 /// Create a copy of JsModuleBytecodeBundle
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? entry = freezed,Object? modules = null,}) {
-  return _then(_self.copyWith(
+  return _then(JsModuleBytecodeBundle(
 entry: freezed == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
 as String?,modules: null == modules ? _self.modules : modules // ignore: cast_nullable_to_non_nullable
 as List<JsModuleBytecode>,
@@ -1689,7 +1734,7 @@ return raw(_that.entry,_that.modules);case _:
 
 
 class _JsModuleBytecodeBundle extends JsModuleBytecodeBundle {
-  const _JsModuleBytecodeBundle({this.entry, required final  List<JsModuleBytecode> modules}): _modules = modules,super._();
+  const _JsModuleBytecodeBundle({this.entry, required  List<JsModuleBytecode> modules}): _modules = modules,super._();
   
 
 @override final  String? entry;
@@ -1711,16 +1756,18 @@ _$JsModuleBytecodeBundleCopyWith<_JsModuleBytecodeBundle> get copyWith => __$JsM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecodeBundle&&(identical(other.entry, entry) || other.entry == entry)&&const DeepCollectionEquality().equals(other._modules, _modules));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecodeBundle&&(identical(other.entry, entry) || other.entry == entry)&&const DeepCollectionEquality().equals(other.modules, _modules));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,entry,const DeepCollectionEquality().hash(_modules));
+int get hashCode {
+    return Object.hash(runtimeType,entry,const DeepCollectionEquality().hash(_modules));
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecodeBundle.raw(entry: $entry, modules: $modules)';
+    return 'JsModuleBytecodeBundle.raw(entry: $entry, modules: $modules)';
 }
 
 
@@ -1773,16 +1820,21 @@ $JsModuleBytecodeOptionsCopyWith<JsModuleBytecodeOptions> get copyWith => _$JsMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug));
+  final _this = this as JsModuleBytecodeOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsModuleBytecodeOptions&&(identical(other.endianness, _this.endianness) || other.endianness == _this.endianness)&&(identical(other.stripSource, _this.stripSource) || other.stripSource == _this.stripSource)&&(identical(other.stripDebug, _this.stripDebug) || other.stripDebug == _this.stripDebug));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,endianness,stripSource,stripDebug);
+int get hashCode {
+  final _this = this as JsModuleBytecodeOptions;
+  return Object.hash(runtimeType,_this.endianness,_this.stripSource,_this.stripDebug);
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug)';
+  final _this = this as JsModuleBytecodeOptions;
+  return 'JsModuleBytecodeOptions(endianness: ${_this.endianness}, stripSource: ${_this.stripSource}, stripDebug: ${_this.stripDebug})';
 }
 
 
@@ -1811,7 +1863,7 @@ class _$JsModuleBytecodeOptionsCopyWithImpl<$Res>
 /// Create a copy of JsModuleBytecodeOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? endianness = freezed,Object? stripSource = freezed,Object? stripDebug = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(JsModuleBytecodeOptions(
 endianness: freezed == endianness ? _self.endianness : endianness // ignore: cast_nullable_to_non_nullable
 as JsBytecodeEndianness?,stripSource: freezed == stripSource ? _self.stripSource : stripSource // ignore: cast_nullable_to_non_nullable
 as bool?,stripDebug: freezed == stripDebug ? _self.stripDebug : stripDebug // ignore: cast_nullable_to_non_nullable
@@ -1967,16 +2019,18 @@ _$JsModuleBytecodeOptionsCopyWith<_JsModuleBytecodeOptions> get copyWith => __$J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsModuleBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,endianness,stripSource,stripDebug);
+int get hashCode {
+    return Object.hash(runtimeType,endianness,stripSource,stripDebug);
+}
 
 @override
 String toString() {
-  return 'JsModuleBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug)';
+    return 'JsModuleBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug)';
 }
 
 
@@ -2030,16 +2084,21 @@ $JsScriptBytecodeCopyWith<JsScriptBytecode> get copyWith => _$JsScriptBytecodeCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsScriptBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
+  final _this = this as JsScriptBytecode;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsScriptBytecode&&(identical(other.name, _this.name) || other.name == _this.name)&&const DeepCollectionEquality().equals(other.bytes, _this.bytes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+int get hashCode {
+  final _this = this as JsScriptBytecode;
+  return Object.hash(runtimeType,_this.name,const DeepCollectionEquality().hash(_this.bytes));
+}
 
 @override
 String toString() {
-  return 'JsScriptBytecode(name: $name, bytes: $bytes)';
+  final _this = this as JsScriptBytecode;
+  return 'JsScriptBytecode(name: ${_this.name}, bytes: ${_this.bytes})';
 }
 
 
@@ -2068,10 +2127,10 @@ class _$JsScriptBytecodeCopyWithImpl<$Res>
 /// Create a copy of JsScriptBytecode
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? bytes = null,}) {
-  return _then(_self.copyWith(
+  return _then(JsScriptBytecode(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,bytes: null == bytes ? _self.bytes : bytes // ignore: cast_nullable_to_non_nullable
-as Uint8List,
+as String,bytes: null == bytes ? _self.bytes! : bytes // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 
@@ -2222,16 +2281,18 @@ _$JsScriptBytecodeCopyWith<_JsScriptBytecode> get copyWith => __$JsScriptBytecod
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsScriptBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsScriptBytecode&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.bytes, bytes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+int get hashCode {
+    return Object.hash(runtimeType,name,const DeepCollectionEquality().hash(bytes));
+}
 
 @override
 String toString() {
-  return 'JsScriptBytecode.raw(name: $name, bytes: $bytes)';
+    return 'JsScriptBytecode.raw(name: $name, bytes: $bytes)';
 }
 
 
@@ -2284,16 +2345,21 @@ $JsScriptBytecodeOptionsCopyWith<JsScriptBytecodeOptions> get copyWith => _$JsSc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsScriptBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
+  final _this = this as JsScriptBytecodeOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsScriptBytecodeOptions&&(identical(other.endianness, _this.endianness) || other.endianness == _this.endianness)&&(identical(other.stripSource, _this.stripSource) || other.stripSource == _this.stripSource)&&(identical(other.stripDebug, _this.stripDebug) || other.stripDebug == _this.stripDebug)&&(identical(other.strict, _this.strict) || other.strict == _this.strict)&&(identical(other.backtraceBarrier, _this.backtraceBarrier) || other.backtraceBarrier == _this.backtraceBarrier)&&(identical(other.promise, _this.promise) || other.promise == _this.promise));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,endianness,stripSource,stripDebug,strict,backtraceBarrier,promise);
+int get hashCode {
+  final _this = this as JsScriptBytecodeOptions;
+  return Object.hash(runtimeType,_this.endianness,_this.stripSource,_this.stripDebug,_this.strict,_this.backtraceBarrier,_this.promise);
+}
 
 @override
 String toString() {
-  return 'JsScriptBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
+  final _this = this as JsScriptBytecodeOptions;
+  return 'JsScriptBytecodeOptions(endianness: ${_this.endianness}, stripSource: ${_this.stripSource}, stripDebug: ${_this.stripDebug}, strict: ${_this.strict}, backtraceBarrier: ${_this.backtraceBarrier}, promise: ${_this.promise})';
 }
 
 
@@ -2322,7 +2388,7 @@ class _$JsScriptBytecodeOptionsCopyWithImpl<$Res>
 /// Create a copy of JsScriptBytecodeOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? endianness = freezed,Object? stripSource = freezed,Object? stripDebug = freezed,Object? strict = freezed,Object? backtraceBarrier = freezed,Object? promise = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(JsScriptBytecodeOptions(
 endianness: freezed == endianness ? _self.endianness : endianness // ignore: cast_nullable_to_non_nullable
 as JsBytecodeEndianness?,stripSource: freezed == stripSource ? _self.stripSource : stripSource // ignore: cast_nullable_to_non_nullable
 as bool?,stripDebug: freezed == stripDebug ? _self.stripDebug : stripDebug // ignore: cast_nullable_to_non_nullable
@@ -2484,16 +2550,18 @@ _$JsScriptBytecodeOptionsCopyWith<_JsScriptBytecodeOptions> get copyWith => __$J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsScriptBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsScriptBytecodeOptions&&(identical(other.endianness, endianness) || other.endianness == endianness)&&(identical(other.stripSource, stripSource) || other.stripSource == stripSource)&&(identical(other.stripDebug, stripDebug) || other.stripDebug == stripDebug)&&(identical(other.strict, strict) || other.strict == strict)&&(identical(other.backtraceBarrier, backtraceBarrier) || other.backtraceBarrier == backtraceBarrier)&&(identical(other.promise, promise) || other.promise == promise));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,endianness,stripSource,stripDebug,strict,backtraceBarrier,promise);
+int get hashCode {
+    return Object.hash(runtimeType,endianness,stripSource,stripDebug,strict,backtraceBarrier,promise);
+}
 
 @override
 String toString() {
-  return 'JsScriptBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
+    return 'JsScriptBytecodeOptions(endianness: $endianness, stripSource: $stripSource, stripDebug: $stripDebug, strict: $strict, backtraceBarrier: $backtraceBarrier, promise: $promise)';
 }
 
 

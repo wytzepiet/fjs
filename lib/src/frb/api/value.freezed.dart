@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'value.dart';
@@ -9,6 +9,7 @@ part of 'value.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$JsValue {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'JsValue()';
+    return 'JsValue()';
 }
 
 
@@ -245,7 +246,7 @@ class JsValue_None extends JsValue {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_None);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_None);
 }
 
 
@@ -254,7 +255,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'JsValue.none()';
+    return 'JsValue.none()';
 }
 
 
@@ -282,16 +283,18 @@ $JsValue_BooleanCopyWith<JsValue_Boolean> get copyWith => _$JsValue_BooleanCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Boolean&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Boolean&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.boolean(field0: $field0)';
+    return 'JsValue.boolean(field0: $field0)';
 }
 
 
@@ -348,16 +351,18 @@ $JsValue_IntegerCopyWith<JsValue_Integer> get copyWith => _$JsValue_IntegerCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Integer&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Integer&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.integer(field0: $field0)';
+    return 'JsValue.integer(field0: $field0)';
 }
 
 
@@ -414,16 +419,18 @@ $JsValue_FloatCopyWith<JsValue_Float> get copyWith => _$JsValue_FloatCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Float&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Float&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.float(field0: $field0)';
+    return 'JsValue.float(field0: $field0)';
 }
 
 
@@ -480,16 +487,18 @@ $JsValue_BigintCopyWith<JsValue_Bigint> get copyWith => _$JsValue_BigintCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Bigint&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Bigint&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.bigint(field0: $field0)';
+    return 'JsValue.bigint(field0: $field0)';
 }
 
 
@@ -546,16 +555,18 @@ $JsValue_StringCopyWith<JsValue_String> get copyWith => _$JsValue_StringCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_String&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_String&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.string(field0: $field0)';
+    return 'JsValue.string(field0: $field0)';
 }
 
 
@@ -612,16 +623,18 @@ $JsValue_BytesCopyWith<JsValue_Bytes> get copyWith => _$JsValue_BytesCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Bytes&&const DeepCollectionEquality().equals(other.field0, field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Bytes&&const DeepCollectionEquality().equals(other.field0, field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+}
 
 @override
 String toString() {
-  return 'JsValue.bytes(field0: $field0)';
+    return 'JsValue.bytes(field0: $field0)';
 }
 
 
@@ -663,7 +676,7 @@ as Uint8List,
 
 
 class JsValue_Array extends JsValue {
-  const JsValue_Array(final  List<JsValue> field0): _field0 = field0,super._();
+  const JsValue_Array( List<JsValue> field0): _field0 = field0,super._();
   
 
  final  List<JsValue> _field0;
@@ -684,16 +697,18 @@ $JsValue_ArrayCopyWith<JsValue_Array> get copyWith => _$JsValue_ArrayCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Array&&const DeepCollectionEquality().equals(other._field0, _field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Array&&const DeepCollectionEquality().equals(other.field0, _field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_field0));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_field0));
+}
 
 @override
 String toString() {
-  return 'JsValue.array(field0: $field0)';
+    return 'JsValue.array(field0: $field0)';
 }
 
 
@@ -735,7 +750,7 @@ as List<JsValue>,
 
 
 class JsValue_Object extends JsValue {
-  const JsValue_Object(final  Map<String, JsValue> field0): _field0 = field0,super._();
+  const JsValue_Object( Map<String, JsValue> field0): _field0 = field0,super._();
   
 
  final  Map<String, JsValue> _field0;
@@ -756,16 +771,18 @@ $JsValue_ObjectCopyWith<JsValue_Object> get copyWith => _$JsValue_ObjectCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Object&&const DeepCollectionEquality().equals(other._field0, _field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Object&&const DeepCollectionEquality().equals(other.field0, _field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_field0));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_field0));
+}
 
 @override
 String toString() {
-  return 'JsValue.object(field0: $field0)';
+    return 'JsValue.object(field0: $field0)';
 }
 
 
@@ -822,16 +839,18 @@ $JsValue_DateCopyWith<JsValue_Date> get copyWith => _$JsValue_DateCopyWithImpl<J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Date&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Date&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.date(field0: $field0)';
+    return 'JsValue.date(field0: $field0)';
 }
 
 
@@ -888,16 +907,18 @@ $JsValue_SymbolCopyWith<JsValue_Symbol> get copyWith => _$JsValue_SymbolCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Symbol&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Symbol&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.symbol(field0: $field0)';
+    return 'JsValue.symbol(field0: $field0)';
 }
 
 
@@ -954,16 +975,18 @@ $JsValue_FunctionCopyWith<JsValue_Function> get copyWith => _$JsValue_FunctionCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Function&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsValue_Function&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsValue.function(field0: $field0)';
+    return 'JsValue.function(field0: $field0)';
 }
 
 

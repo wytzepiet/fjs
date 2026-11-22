@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'engine.dart';
@@ -9,6 +9,7 @@ part of 'engine.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $JsEngineRuntimeOptionsCopyWith<JsEngineRuntimeOptions> get copyWith => _$JsEngi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsEngineRuntimeOptions&&(identical(other.memoryLimit, memoryLimit) || other.memoryLimit == memoryLimit)&&(identical(other.gcThreshold, gcThreshold) || other.gcThreshold == gcThreshold)&&(identical(other.maxStackSize, maxStackSize) || other.maxStackSize == maxStackSize)&&(identical(other.info, info) || other.info == info));
+  final _this = this as JsEngineRuntimeOptions;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsEngineRuntimeOptions&&(identical(other.memoryLimit, _this.memoryLimit) || other.memoryLimit == _this.memoryLimit)&&(identical(other.gcThreshold, _this.gcThreshold) || other.gcThreshold == _this.gcThreshold)&&(identical(other.maxStackSize, _this.maxStackSize) || other.maxStackSize == _this.maxStackSize)&&(identical(other.info, _this.info) || other.info == _this.info));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,memoryLimit,gcThreshold,maxStackSize,info);
+int get hashCode {
+  final _this = this as JsEngineRuntimeOptions;
+  return Object.hash(runtimeType,_this.memoryLimit,_this.gcThreshold,_this.maxStackSize,_this.info);
+}
 
 @override
 String toString() {
-  return 'JsEngineRuntimeOptions(memoryLimit: $memoryLimit, gcThreshold: $gcThreshold, maxStackSize: $maxStackSize, info: $info)';
+  final _this = this as JsEngineRuntimeOptions;
+  return 'JsEngineRuntimeOptions(memoryLimit: ${_this.memoryLimit}, gcThreshold: ${_this.gcThreshold}, maxStackSize: ${_this.maxStackSize}, info: ${_this.info})';
 }
 
 
@@ -63,7 +69,7 @@ class _$JsEngineRuntimeOptionsCopyWithImpl<$Res>
 /// Create a copy of JsEngineRuntimeOptions
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? memoryLimit = freezed,Object? gcThreshold = freezed,Object? maxStackSize = freezed,Object? info = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(JsEngineRuntimeOptions(
 memoryLimit: freezed == memoryLimit ? _self.memoryLimit : memoryLimit // ignore: cast_nullable_to_non_nullable
 as BigInt?,gcThreshold: freezed == gcThreshold ? _self.gcThreshold : gcThreshold // ignore: cast_nullable_to_non_nullable
 as BigInt?,maxStackSize: freezed == maxStackSize ? _self.maxStackSize : maxStackSize // ignore: cast_nullable_to_non_nullable
@@ -221,16 +227,18 @@ _$JsEngineRuntimeOptionsCopyWith<_JsEngineRuntimeOptions> get copyWith => __$JsE
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsEngineRuntimeOptions&&(identical(other.memoryLimit, memoryLimit) || other.memoryLimit == memoryLimit)&&(identical(other.gcThreshold, gcThreshold) || other.gcThreshold == gcThreshold)&&(identical(other.maxStackSize, maxStackSize) || other.maxStackSize == maxStackSize)&&(identical(other.info, info) || other.info == info));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _JsEngineRuntimeOptions&&(identical(other.memoryLimit, memoryLimit) || other.memoryLimit == memoryLimit)&&(identical(other.gcThreshold, gcThreshold) || other.gcThreshold == gcThreshold)&&(identical(other.maxStackSize, maxStackSize) || other.maxStackSize == maxStackSize)&&(identical(other.info, info) || other.info == info));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,memoryLimit,gcThreshold,maxStackSize,info);
+int get hashCode {
+    return Object.hash(runtimeType,memoryLimit,gcThreshold,maxStackSize,info);
+}
 
 @override
 String toString() {
-  return 'JsEngineRuntimeOptions(memoryLimit: $memoryLimit, gcThreshold: $gcThreshold, maxStackSize: $maxStackSize, info: $info)';
+    return 'JsEngineRuntimeOptions(memoryLimit: $memoryLimit, gcThreshold: $gcThreshold, maxStackSize: $maxStackSize, info: $info)';
 }
 
 

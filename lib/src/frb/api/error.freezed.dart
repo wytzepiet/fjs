@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'error.dart';
@@ -9,6 +9,7 @@ part of 'error.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$JsError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError);
 }
 
 
@@ -276,12 +277,14 @@ $JsError_PromiseCopyWith<JsError_Promise> get copyWith => _$JsError_PromiseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Promise&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Promise&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -343,12 +346,14 @@ $JsError_ModuleCopyWith<JsError_Module> get copyWith => _$JsError_ModuleCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Module&&(identical(other.module, module) || other.module == module)&&(identical(other.method, method) || other.method == method)&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Module&&(identical(other.module, module) || other.module == module)&&(identical(other.method, method) || other.method == method)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,module,method,message);
+int get hashCode {
+    return Object.hash(runtimeType,module,method,message);
+}
 
 
 
@@ -407,12 +412,14 @@ $JsError_ContextCopyWith<JsError_Context> get copyWith => _$JsError_ContextCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Context&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Context&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -469,12 +476,14 @@ $JsError_StorageCopyWith<JsError_Storage> get copyWith => _$JsError_StorageCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Storage&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Storage&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -534,12 +543,14 @@ $JsError_IoCopyWith<JsError_Io> get copyWith => _$JsError_IoCopyWithImpl<JsError
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Io&&(identical(other.path, path) || other.path == path)&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Io&&(identical(other.path, path) || other.path == path)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,path,message);
+int get hashCode {
+    return Object.hash(runtimeType,path,message);
+}
 
 
 
@@ -597,12 +608,14 @@ $JsError_RuntimeCopyWith<JsError_Runtime> get copyWith => _$JsError_RuntimeCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Runtime&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Runtime&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -659,12 +672,14 @@ $JsError_GenericCopyWith<JsError_Generic> get copyWith => _$JsError_GenericCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Generic&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Generic&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -721,12 +736,14 @@ $JsError_EngineCopyWith<JsError_Engine> get copyWith => _$JsError_EngineCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Engine&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Engine&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -783,12 +800,14 @@ $JsError_BridgeCopyWith<JsError_Bridge> get copyWith => _$JsError_BridgeCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Bridge&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Bridge&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -850,12 +869,14 @@ $JsError_ConversionCopyWith<JsError_Conversion> get copyWith => _$JsError_Conver
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Conversion&&(identical(other.from, from) || other.from == from)&&(identical(other.to, to) || other.to == to)&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Conversion&&(identical(other.from, from) || other.from == from)&&(identical(other.to, to) || other.to == to)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,from,to,message);
+int get hashCode {
+    return Object.hash(runtimeType,from,to,message);
+}
 
 
 
@@ -917,12 +938,14 @@ $JsError_TimeoutCopyWith<JsError_Timeout> get copyWith => _$JsError_TimeoutCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Timeout&&(identical(other.operation, operation) || other.operation == operation)&&(identical(other.timeoutMs, timeoutMs) || other.timeoutMs == timeoutMs));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Timeout&&(identical(other.operation, operation) || other.operation == operation)&&(identical(other.timeoutMs, timeoutMs) || other.timeoutMs == timeoutMs));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,operation,timeoutMs);
+int get hashCode {
+    return Object.hash(runtimeType,operation,timeoutMs);
+}
 
 
 
@@ -980,12 +1003,14 @@ $JsError_MemoryLimitCopyWith<JsError_MemoryLimit> get copyWith => _$JsError_Memo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_MemoryLimit&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_MemoryLimit&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -1042,12 +1067,14 @@ $JsError_StackOverflowCopyWith<JsError_StackOverflow> get copyWith => _$JsError_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_StackOverflow&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_StackOverflow&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -1109,12 +1136,14 @@ $JsError_SyntaxCopyWith<JsError_Syntax> get copyWith => _$JsError_SyntaxCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Syntax&&(identical(other.line, line) || other.line == line)&&(identical(other.column, column) || other.column == column)&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Syntax&&(identical(other.line, line) || other.line == line)&&(identical(other.column, column) || other.column == column)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,line,column,message);
+int get hashCode {
+    return Object.hash(runtimeType,line,column,message);
+}
 
 
 
@@ -1173,12 +1202,14 @@ $JsError_ReferenceCopyWith<JsError_Reference> get copyWith => _$JsError_Referenc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Reference&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Reference&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -1235,12 +1266,14 @@ $JsError_TypeCopyWith<JsError_Type> get copyWith => _$JsError_TypeCopyWithImpl<J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Type&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Type&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -1297,12 +1330,14 @@ $JsError_CancelledCopyWith<JsError_Cancelled> get copyWith => _$JsError_Cancelle
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Cancelled&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsError_Cancelled&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 
 
@@ -1349,16 +1384,21 @@ mixin _$JsResult {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult&&const DeepCollectionEquality().equals(other.field0, field0));
+  final _this = this as JsResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult&&const DeepCollectionEquality().equals(other.field0, _this.field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(field0));
+int get hashCode {
+  final _this = this as JsResult;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.field0));
+}
 
 @override
 String toString() {
-  return 'JsResult(field0: $field0)';
+  final _this = this as JsResult;
+  return 'JsResult(field0: ${_this.field0})';
 }
 
 
@@ -1519,16 +1559,18 @@ $JsResult_OkCopyWith<JsResult_Ok> get copyWith => _$JsResult_OkCopyWithImpl<JsRe
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult_Ok&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult_Ok&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsResult.ok(field0: $field0)';
+    return 'JsResult.ok(field0: $field0)';
 }
 
 
@@ -1594,16 +1636,18 @@ $JsResult_ErrCopyWith<JsResult_Err> get copyWith => _$JsResult_ErrCopyWithImpl<J
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult_Err&&(identical(other.field0, field0) || other.field0 == field0));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is JsResult_Err&&(identical(other.field0, field0) || other.field0 == field0));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,field0);
+int get hashCode {
+    return Object.hash(runtimeType,field0);
+}
 
 @override
 String toString() {
-  return 'JsResult.err(field0: $field0)';
+    return 'JsResult.err(field0: $field0)';
 }
 
 
