@@ -1866,6 +1866,80 @@ async fn test_engine_call_async_function() {
     assert!(matches!(value, JsValue::Integer(30)));
 }
 
+#[tokio::test(flavor = "multi_thread")]
+async fn test_engine_call_sync() {
+    let engine = std::sync::Arc::new(
+        JsEngine::create(Some(JsBuiltinOptions::essential()), None, None)
+            .await
+            .unwrap(),
+    );
+    engine.init_without_bridge().await.unwrap();
+    engine
+        .declare_new_module(JsModule::code(
+            "sync-utils".to_string(),
+            r#"
+                let n = 0;
+                export function bump(by) { n += by; return n; }
+                export function later() { return Promise.resolve(1); }
+                export function boom() { throw new Error("boom"); }
+                export async function waitThenRead() {
+                    await new Promise((r) => setTimeout(r, 100));
+                    return n;
+                }
+            "#
+            .to_string(),
+        ))
+        .await
+        .unwrap();
+    // Evaluated by a first async call.
+    let r = engine
+        .call(
+            "sync-utils".into(),
+            "bump".into(),
+            Some(vec![JsValue::Integer(1)]),
+        )
+        .await;
+    assert!(matches!(r, Ok(JsValue::Integer(1))));
+
+    // An async call waiting on a timer doesn't hold the engine: a sync call
+    // runs meanwhile, and the async call sees its write.
+    let pending = {
+        let engine = engine.clone();
+        tokio::spawn(async move {
+            engine
+                .call("sync-utils".into(), "waitThenRead".into(), None)
+                .await
+        })
+    };
+    tokio::time::sleep(std::time::Duration::from_millis(20)).await;
+    let e = engine.clone();
+    let r = tokio::task::spawn_blocking(move || {
+        e.call_sync(
+            "sync-utils".into(),
+            "bump".into(),
+            Some(vec![JsValue::Integer(10)]),
+        )
+    })
+    .await
+    .unwrap();
+    assert!(matches!(r, Ok(JsValue::Integer(11))), "{r:?}");
+    assert!(matches!(pending.await.unwrap(), Ok(JsValue::Integer(11))));
+
+    let e = engine.clone();
+    let r =
+        tokio::task::spawn_blocking(move || e.call_sync("sync-utils".into(), "later".into(), None))
+            .await
+            .unwrap();
+    assert!(r.unwrap_err().to_string().contains("returned a Promise"));
+
+    let e = engine.clone();
+    let r =
+        tokio::task::spawn_blocking(move || e.call_sync("sync-utils".into(), "boom".into(), None))
+            .await
+            .unwrap();
+    assert!(r.unwrap_err().to_string().contains("boom"));
+}
+
 #[tokio::test]
 async fn test_engine_call_nonexistent_module() {
     let runtime = JsAsyncRuntime::new().unwrap();

@@ -26,8 +26,8 @@ use crate::api::module::{
     is_dynamic_module_loaded, mark_dynamic_module_loaded,
 };
 use crate::api::runtime::{
-    JsAsyncContext, JsAsyncRuntime, MemoryUsage, call_module_method, result_from_maybe_promise,
-    result_from_promise,
+    JsAsyncContext, JsAsyncRuntime, MemoryUsage, call_module_method, call_module_method_now,
+    result_from_maybe_promise, result_from_promise,
 };
 use crate::api::source::{
     JsBuiltinOptions, JsCode, JsEvalOptions, JsModule, JsModuleBytecode, JsModuleBytecodeBundle,
@@ -1432,6 +1432,40 @@ impl JsEngine {
             })
             .await
             .into_result()
+    }
+
+    /// Calls an exported module function and blocks until it returns.
+    ///
+    /// For callers that need a value at once, such as a Flutter builder
+    /// asking JavaScript for a widget during a frame. The function must
+    /// return without waiting: a Promise result is an error, not awaited,
+    /// because the calling thread may be the one the Promise waits for.
+    /// The module must already be evaluated.
+    ///
+    /// Blocks the calling thread while JavaScript runs, so keep the call
+    /// short. JavaScript still runs on the engine's own threads.
+    #[frb(sync)]
+    pub fn call_sync(
+        &self,
+        module: String,
+        method: String,
+        params: Option<Vec<JsValue>>,
+    ) -> Result<JsValue, JsError> {
+        let resources = self.ensure_running()?;
+
+        let params = params.unwrap_or_default();
+        let driver = resources.runtime.driver.clone();
+        let shutdown = resources.runtime.shutdown();
+        futures::executor::block_on(resources.context.with_foreground_js_result(
+            async move |ctx, checkpoint| {
+                let driver = driver.clone();
+                call_module_method_now(&ctx, module, method, params, shutdown, move |source| {
+                    driver.remove_error_source_since(checkpoint, source);
+                })
+                .await
+            },
+        ))
+        .into_result()
     }
 }
 

@@ -1716,10 +1716,73 @@ pub(crate) async fn call_module_method<'js>(
     shutdown: RuntimeShutdown,
     acknowledge_error_source: impl Fn(DriverErrorSource),
 ) -> JsResult {
+    let func = match module_function(
+        ctx,
+        module,
+        method,
+        shutdown.clone(),
+        &acknowledge_error_source,
+    )
+    .await
+    {
+        Ok(f) => f,
+        Err(e) => return JsResult::Err(e),
+    };
+    let res = func.call::<_, MaybePromise>((rquickjs::function::Rest(params),));
+    result_from_maybe_promise(ctx, res, shutdown, acknowledge_error_source).await
+}
+
+/// Calls a method on a module that must return without waiting: a Promise
+/// result is an error, not awaited (the caller may be blocking the thread
+/// the Promise would wait for).
+pub(crate) async fn call_module_method_now<'js>(
+    ctx: &rquickjs::Ctx<'js>,
+    module: String,
+    method: String,
+    params: Vec<JsValue>,
+    shutdown: RuntimeShutdown,
+    acknowledge_error_source: impl Fn(DriverErrorSource),
+) -> JsResult {
+    let func = match module_function(
+        ctx,
+        module.clone(),
+        method.clone(),
+        shutdown.clone(),
+        &acknowledge_error_source,
+    )
+    .await
+    {
+        Ok(f) => f,
+        Err(e) => return JsResult::Err(e),
+    };
+    let res = func.call::<_, rquickjs::Value>((rquickjs::function::Rest(params),));
+    if let Ok(v) = &res
+        && v.is_promise()
+    {
+        return JsResult::Err(JsError::module(
+            Some(module),
+            Some(method),
+            "A synchronous call returned a Promise",
+        ));
+    }
+    if shutdown.requested() {
+        return JsResult::Err(shutdown.error());
+    }
+    result_from_sync(ctx, res)
+}
+
+/// Imports [module] and returns its exported function [method].
+async fn module_function<'js>(
+    ctx: &rquickjs::Ctx<'js>,
+    module: String,
+    method: String,
+    shutdown: RuntimeShutdown,
+    acknowledge_error_source: &impl Fn(DriverErrorSource),
+) -> Result<rquickjs::Function<'js>, JsError> {
     let promise = match Module::import(ctx, module.clone()).catch(ctx) {
         Ok(p) => p,
         Err(e) => {
-            return JsResult::Err(JsError::module(
+            return Err(JsError::module(
                 Some(module),
                 None,
                 format!("Failed to import: {}", e),
@@ -1734,7 +1797,7 @@ pub(crate) async fn call_module_method<'js>(
             if !matches!(e, JsError::Cancelled(_)) {
                 acknowledge_error_source(import_source);
             }
-            return JsResult::Err(JsError::module(
+            return Err(JsError::module(
                 Some(module),
                 None,
                 format!("Failed to import: {e}"),
@@ -1745,7 +1808,7 @@ pub(crate) async fn call_module_method<'js>(
     let obj = match module_value.as_object() {
         Some(o) => o,
         None => {
-            return JsResult::Err(JsError::module(
+            return Err(JsError::module(
                 Some(module),
                 None,
                 "Module is not an object",
@@ -1758,7 +1821,7 @@ pub(crate) async fn call_module_method<'js>(
         Ok(v) if v.is_function() => match v.as_function() {
             Some(f) => f.clone(),
             None => {
-                return JsResult::Err(JsError::module(
+                return Err(JsError::module(
                     Some(module),
                     Some(method),
                     "Method is not a function",
@@ -1766,14 +1829,14 @@ pub(crate) async fn call_module_method<'js>(
             }
         },
         Ok(_) => {
-            return JsResult::Err(JsError::module(
+            return Err(JsError::module(
                 Some(module),
                 Some(method),
                 "Method is not a function",
             ));
         }
         Err(e) => {
-            return JsResult::Err(JsError::module(
+            return Err(JsError::module(
                 Some(module),
                 Some(method),
                 format!("Failed to get method: {}", e),
@@ -1781,8 +1844,7 @@ pub(crate) async fn call_module_method<'js>(
         }
     };
 
-    let res = func.call::<_, MaybePromise>((rquickjs::function::Rest(params),));
-    result_from_maybe_promise(ctx, res, shutdown, acknowledge_error_source).await
+    Ok(func)
 }
 
 /// Helper function to convert sync result.
