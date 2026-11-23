@@ -58,6 +58,22 @@ abstract class JsEngine implements RustOpaqueInterface {
     List<JsValue>? params,
   });
 
+  /// Calls an exported module function and blocks until it returns.
+  ///
+  /// For callers that need a value at once, such as a Flutter builder
+  /// asking JavaScript for a widget during a frame. The function must
+  /// return without waiting: a Promise result is an error, not awaited,
+  /// because the calling thread may be the one the Promise waits for.
+  /// The module must already be evaluated.
+  ///
+  /// Blocks the calling thread while JavaScript runs, so keep the call
+  /// short. JavaScript still runs on the engine's own threads.
+  JsValue callSync({
+    required String module,
+    required String method,
+    List<JsValue>? params,
+  });
+
   /// Clears dynamic modules that have not been loaded into the QuickJS module cache.
   ///
   /// Dynamic modules become immutable for the lifetime of the context once they are loaded.

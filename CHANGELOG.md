@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* **FEAT**: `JsEngine.callSync` calls an exported module function and blocks until it returns, for callers that need a value at once (a Flutter builder asking JavaScript for a widget during a frame). The function must return without waiting: a Promise result is an error rather than awaited, since the calling thread may be the one it waits for. JavaScript still runs on the engine's own threads, and an async call parked on an `await` doesn't block it.
 * **FIX**: The example's `FjsService.dispose()` now drains already-scheduled JavaScript work via `closeGracefully()` before teardown, so pending evaluations settle normally instead of surfacing as late cancelled errors after callers move on.
 * **INTERNAL**: Integration tests now run on every desktop platform in CI: all four example suites (`smoke`, `simple`, `runtime_driver`, `fjs_service`) execute sequentially on Linux, macOS, and Windows instead of the previous Linux-only smoke test.
 * **INTERNAL**: Added a full unit-test suite for the `fetch-precompiled-artifacts` publish-path command (signature verification, multi-asset fetch, composite-name validation, missing generation, wrong signing key) and a Rust regression test locking the async engine's memory-limit error contract.
