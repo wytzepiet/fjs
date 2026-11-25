@@ -754,6 +754,10 @@ fn install_timer_callback_error_guard(ctx: &Ctx<'_>) -> rquickjs::Result<()> {
             if (typeof callback !== "function") {
               return nativeTimer(callback, delay, ...args);
             }
+            // As in browsers, a missing or non-numeric delay is 0. The native
+            // timer only takes a missing one: an explicit undefined fails its
+            // conversion to f64, so `setTimeout(fn)` threw through this guard.
+            const ms = Number(delay);
             return nativeTimer(function() {
               try {
                 return callback.apply(this, args);
@@ -762,7 +766,7 @@ fn install_timer_callback_error_guard(ctx: &Ctx<'_>) -> rquickjs::Result<()> {
                   throw error;
                 }
               }
-            }, delay);
+            }, Number.isFinite(ms) ? ms : 0);
           };
 
           const guardImmediate = (nativeTimer) => function(callback, ...args) {

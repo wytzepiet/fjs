@@ -448,6 +448,37 @@ async fn test_engine_close_drains_pending_runtime_work() {
 }
 
 #[tokio::test]
+async fn test_engine_timers_without_delay() {
+    let engine = JsEngine::create(Some(JsBuiltinOptions::essential()), None, None)
+        .await
+        .unwrap();
+    engine.init_without_bridge().await.unwrap();
+
+    // `setTimeout(fn)`, `setTimeout(fn, undefined)` and a non-numeric delay
+    // run as a delay of 0, as in browsers (tRPC's batch link relies on it).
+    let result = engine
+        .eval(
+            JsCode::Code(
+                r#"
+                    (async () => {
+                      const fired = [];
+                      await new Promise((r) => setTimeout(() => { fired.push("none"); r(); }));
+                      await new Promise((r) => setTimeout(() => { fired.push("undefined"); r(); }, undefined));
+                      await new Promise((r) => setTimeout(() => { fired.push("nan"); r(); }, "soon"));
+                      await new Promise((r) => { const id = setInterval(() => { clearInterval(id); fired.push("interval"); r(); }); });
+                      return fired.join(",");
+                    })()
+                "#
+                .to_string(),
+            ),
+            Some(crate::api::source::JsEvalOptions::with_promise()),
+        )
+        .await
+        .unwrap();
+    assert!(matches!(result, JsValue::String(ref v) if v == "none,undefined,nan,interval"), "{result:?}");
+}
+
+#[tokio::test]
 async fn test_engine_runtime_proxy_methods_fail_after_close() {
     let engine = JsEngine::create(None, None, None).await.unwrap();
     engine.close().await.unwrap();
