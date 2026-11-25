@@ -241,7 +241,7 @@ fn date_millis<'js>(
       if (any > maxSafeInteger || any < -maxSafeInteger) {
         return JsValue.bigint(any.toString());
       }
-      return JsValue.integer(any);
+      return JsValue.integer(PlatformInt64Util.from(any));
     } else if (any is double) {
       return JsValue.float(any);
     } else if (any is BigInt) {
@@ -279,7 +279,7 @@ fn date_millis<'js>(
 
   /// Safe casting methods
   bool? get asBoolean => this is JsValue_Boolean ? (this as JsValue_Boolean).field0 : null;
-  int? get asInteger => this is JsValue_Integer ? (this as JsValue_Integer).field0 : null;
+  int? get asInteger => this is JsValue_Integer ? (this as JsValue_Integer).field0.toInt() : null;
   double? get asFloat => this is JsValue_Float ? (this as JsValue_Float).field0 : null;
   String? get asBigint => this is JsValue_Bigint ? (this as JsValue_Bigint).field0 : null;
   String? get asString => this is JsValue_String ? (this as JsValue_String).field0 : null;
@@ -289,7 +289,7 @@ fn date_millis<'js>(
 
   /// Converts to num if possible.
   num? get asNum {
-    if (this is JsValue_Integer) return (this as JsValue_Integer).field0;
+    if (this is JsValue_Integer) return (this as JsValue_Integer).field0.toInt();
     if (this is JsValue_Float) return (this as JsValue_Float).field0;
     if (this is JsValue_Bigint) {
       final bigint = BigInt.parse((this as JsValue_Bigint).field0);
